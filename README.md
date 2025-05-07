@@ -127,4 +127,9 @@ curl -H "Host: app.miking.duckdns.org" http://10.0.0.100:30593
 
 ## 🧩 Consideraciones Finales
 
-Esta solución fue diseñada y ejecutada exclusivamente por mí, respetando los límites del entorno disponible. Los elementos que no se completaron fueron únicamente por falta de acceso de red para exposición pública, no por desconocimiento técnico.
+Esta solución fue diseñada y ejecutada exclusivamente por mí, respetando los límites del entorno disponible. Los elementos que no se completaron fueron únicamente por falta de acceso de red para exposición pública, no por desconocimiento técnico .
+El uso de DockerHub se dio para mitigar errores internos al momento de desplegar Hardor dado que este presento problemas de recursos al momento de su despliegue y por las limitantes del tiempo y la idea de lograr el objetivo final (tener una aplicaciones funcional y demostrar los conocimientos requeridos en la prueba). 
+No se logro exponer la comunicacion externa debido a limitaciones cloud . Durante la implementación de la prueba, se configuró el Ingress Controller (ingress-nginx) con tipo NodePort, exponiendo los puertos necesarios (80 y 443) en el clúster. Internamente, se validó correctamente el acceso a la aplicación mediante peticiones HTTP direccionadas al Node IP y NodePort, lo cual demuestra que la infraestructura y la aplicación están operativas dentro del entorno Kubernetes.
+Sin embargo, para que la aplicación sea accesible desde el exterior (por ejemplo, desde un navegador en internet), es necesario que la máquina donde está desplegado el clúster tenga una IP pública expuesta y que se encuentren configuradas reglas de red o de firewall (Security Groups) que permitan el acceso externo a los puertos asignados (como el 30593).
+Dado que no se cuenta con acceso administrativo a la infraestructura de red en la nube, no fue posible configurar la exposición externa de manera segura. Esta limitación fue considerada para no comprometer la estabilidad del entorno ni interferir con la configuración existente del proveedor.
+
